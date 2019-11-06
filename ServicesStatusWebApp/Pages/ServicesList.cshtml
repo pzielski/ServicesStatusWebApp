@@ -1,0 +1,45 @@
+﻿@page
+@model ServicesStatusWebApp.Pages.ServicesListModel
+@{
+    ViewData["Title"] = "ServicesList";
+}
+
+<h2>ServicesList</h2>
+
+<table class="table">
+    @foreach(var category in Model.ServiceCategories)
+    {
+        <tr>
+            <td>@category.Name</td>
+            <td>
+                @if (category.Status == true)
+                {
+                    <i class="glyphicon glyphicon-ok"></i>
+                }
+                else
+                {
+                <i class="glyphicon glyphicon-remove"></i>
+                }
+            </td>
+        </tr>
+        @foreach(var service in category.Services)
+        {
+            <tr>
+                <td>@service.Name</td>
+                <td>
+                    @if (service.Status == true)
+                    {
+                        <i class="glyphicon glyphicon-ok"></i>
+                    }
+                    else
+                    {
+                        <i class="glyphicon glyphicon-remove"></i>
+                    }
+                            </td>
+            </tr>
+        }
+
+    }
+
+
+</table>
