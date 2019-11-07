@@ -1,0 +1,34 @@
+﻿.table > tr > td {
+    padding: 8px;
+    line-height: 1.42857143;
+    vertical-align: top;
+    border-top: 1px solid black;
+    color: black;
+}
+.category-row {
+    font-weight: 900;
+    font-size: 16px;
+    border-top: 3px solid black;
+    border-bottom: 3px solid black;
+}
+.category-row.ok {
+    background-color: darkgreen;
+}
+.category-row.problem {
+    background-color: orangered;
+}
+.glyphicon-ok {
+    color: lawngreen;
+}
+.glyphicon-remove {
+    color: red;
+}
+.service-row {
+    font-weight: bold;
+}
+.service-row.ok {
+    background-color: green;
+}
+.service-row.problem {
+    background-color: orange;
+}

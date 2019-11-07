@@ -15,9 +15,9 @@ namespace ServiceStatusWebApp.Core
             get
             {
                 var _status = StatusType.Alright;
-                foreach(var service in Services)
+                foreach (var service in Services)
                 {
-                    if(service.Status == StatusType.Problem)
+                    if (service.Status == StatusType.Problem)
                     {
                         _status = StatusType.Problem;
                         break;

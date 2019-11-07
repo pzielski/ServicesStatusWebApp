@@ -2,23 +2,14 @@
 
 var connection = new signalR.HubConnectionBuilder().withUrl("/servicesHub").build();
 
-connection.on("ReloadServices", function (message) {
+connection.on("ReloadServices", function (message, statuses) {
+    console.log(statuses);
     var myTable = document.getElementById("servicesTable");
-    console.log(myTable);
-    //clearTable(mytable);
-    console.log(message);
-    //console.log(message.length);
-    //populateTable(mytable, message);
-
-    //var msg = message.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
-    //var encodedmsg = msg;
-    //var li = document.createelement("li");
-    //li.textcontent = encodedmsg;
-    //document.getelementbyid("messageslist").appendchild(li);
+    clearTable(myTable);
+    populateTable(myTable, message);
 });
 connection.start();
 function gator() {
-    console.log("foo");
     connection.invoke("ReloadServices").catch(function (err) {
         return console.error(err.toString());
     });
@@ -28,22 +19,50 @@ function clearTable(myNode) {
         myNode.removeChild(myNode.firstChild);
     }
 }
-function populateTable(parent, restaurants) {
-    var len = restaurants.length;
-    var i = 0;
-    for (i = 0; i < len; i++) {
-        var tr = document.createElement("tr");
-        var name = document.createElement("td");
-        var location = document.createElement("td");
-        var cusine = document.createElement("td");
-        name.textContent = restaurants[i].name;
-        location.textContent = restaurants[i].location;
-        cusine.textContent = restaurants[i].cusine;
-        tr.appendChild(name);
-        tr.appendChild(location);
-        tr.appendChild(cusine);
-        parent.appendChild(tr);
-
+function populateTable(parent, categories) {
+    var len = categories.length;
+    for (var i = 0; i < len; i++) {
+        console.log(categories[i]);
+        var categoryRow = document.createElement("tr");
+        var categoryName = document.createElement("td");
+        var categoryStatus = document.createElement("td");
+        var categoryStatusIcon = document.createElement("i");
+        categoryName.textContent = categories[i].name;
+        if (categories[i].status == 0) {
+            categoryStatusIcon.className = "glyphicon glyphicon-ok";
+            categoryRow.className = "category-row ok";
+        }
+        else {
+            categoryStatusIcon.className = "glyphicon glyphicon-remove";
+            categoryRow.className = "category-row problem";
+        }
+        categoryStatus.appendChild(categoryStatusIcon);
+        categoryRow.appendChild(categoryName);
+        categoryRow.appendChild(categoryStatus);
+        parent.appendChild(categoryRow);
+        var services = categories[i].services;
+        var servicesLen = services.length;
+        for (var j = 0; j < servicesLen; j++) {
+            var serviceRow = document.createElement("tr");
+            var serviceName = document.createElement("td");
+            var serviceStatus = document.createElement("td");
+            var serviceStatusIcon = document.createElement("i");
+            
+            serviceName.textContent = services[j].name;
+            if (services[j].status == 0) {
+                serviceStatusIcon.className = "glyphicon glyphicon-ok";
+                serviceRow.className = "service-row ok";
+            }
+            else {
+                serviceStatusIcon.className = "glyphicon glyphicon-remove";
+                serviceRow.className = "service-row problem";
+            }
+            serviceStatus.appendChild(serviceStatusIcon);
+            serviceRow.appendChild(serviceName);
+            serviceRow.appendChild(serviceStatus);
+            parent.appendChild(serviceRow);
+        }
     }
 }
+//setTimeout(gator, 1500);
 setInterval(gator, 1500);

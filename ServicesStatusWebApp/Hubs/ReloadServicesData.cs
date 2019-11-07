@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.SignalR;
 using Microsoft.Extensions.Configuration;
+using ServiceStatusWebApp.Core;
 using ServiceStatusWebApp.Data;
 using System;
 using System.Collections.Generic;
@@ -21,7 +22,12 @@ namespace ServicesStatusWebApp.Hubs
         public async Task ReloadServices()
         {
             var Services = serviceData.GetAndParseServices();
-            await Clients.All.SendAsync("ReloadServices", Services);
+            var statuses = new List<Object>();
+            foreach (var service in Services)
+            {
+                statuses.Add(new { Name = service.Name, Status = service.Status, Services = service.Services });
+            }
+            await Clients.All.SendAsync("ReloadServices", Services, statuses);
         }
     }
 }
