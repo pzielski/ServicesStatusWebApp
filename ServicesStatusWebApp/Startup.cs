@@ -31,7 +31,7 @@ namespace ServicesStatusWebApp
             {
                 options.UseSqlite(Configuration.GetConnectionString("ServiceStatusWebAppDb"));
             });
-            services.AddScoped<IServiceData, SqlServiceData>();
+            services.AddScoped<IServiceData, TxtServiceData>();
             services.Configure<CookiePolicyOptions>(options =>
             {
                 // This lambda determines whether user consent for non-essential cookies is needed for a given request.

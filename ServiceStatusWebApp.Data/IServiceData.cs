@@ -7,7 +7,6 @@ namespace ServiceStatusWebApp.Data
 {
     public interface IServiceData
     {
-        IEnumerable<ServiceInfo> GetRawServices();
         IEnumerable<ServiceCategory> GetAndParseServices();
 
     }

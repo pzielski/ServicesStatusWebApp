@@ -14,7 +14,7 @@ namespace ServiceStatusWebApp.Data
         {
             this.db = db;
         }
-        public IEnumerable<ServiceInfo> GetRawServices()
+        private IEnumerable<ServiceInfo> GetRawServices()
         {
             var query =  from r in db.ServicesData
                                 select r;
