@@ -19,6 +19,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ServiceStatusWebApp.Core\ServiceStatusWebApp.Core.csproj" />
+    <ProjectReference Include="..\ServiceStatusWebApp.Data\ServiceStatusWebApp.Data.csproj" />
   </ItemGroup>
 
 </Project>

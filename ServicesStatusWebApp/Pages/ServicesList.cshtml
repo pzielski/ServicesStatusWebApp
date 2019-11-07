@@ -6,40 +6,42 @@
 
 <h2>ServicesList</h2>
 
-<table class="table">
-    @foreach(var category in Model.ServiceCategories)
-    {
-        <tr>
-            <td>@category.Name</td>
-            <td>
-                @if (category.Status == true)
-                {
-                    <i class="glyphicon glyphicon-ok"></i>
-                }
-                else
-                {
-                <i class="glyphicon glyphicon-remove"></i>
-                }
-            </td>
-        </tr>
-        @foreach(var service in category.Services)
+<table class="table" id="servicesTable">
+    @*@foreach(var category in Model.ServiceCategories)
         {
             <tr>
-                <td>@service.Name</td>
+                <td>@category.Name</td>
                 <td>
-                    @if (service.Status == true)
+                    @if (category.Status == true)
                     {
                         <i class="glyphicon glyphicon-ok"></i>
                     }
                     else
                     {
-                        <i class="glyphicon glyphicon-remove"></i>
+                    <i class="glyphicon glyphicon-remove"></i>
                     }
-                            </td>
+                </td>
             </tr>
-        }
+            @foreach(var service in category.Services)
+            {
+                <tr>
+                    <td>@service.Name</td>
+                    <td>
+                        @if (service.Status == true)
+                        {
+                            <i class="glyphicon glyphicon-ok"></i>
+                        }
+                        else
+                        {
+                            <i class="glyphicon glyphicon-remove"></i>
+                        }
+                                </td>
+                </tr>
+            }
 
-    }
+        }*@
 
 
 </table>
+<script src="~/lib/signalr/dist/browser/signalr.js"></script>
+<script src="~/js/services.js"></script>

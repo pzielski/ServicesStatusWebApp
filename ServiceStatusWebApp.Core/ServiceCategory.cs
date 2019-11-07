@@ -11,15 +11,15 @@ namespace ServiceStatusWebApp.Core
 
         public List<Service> Services { get; set; }
 
-        public bool Status {
+        public StatusType Status {
             get
             {
-                var _status = true;
+                var _status = StatusType.Alright;
                 foreach(var service in Services)
                 {
-                    if(service.Status == false)
+                    if(service.Status == StatusType.Problem)
                     {
-                        _status = false;
+                        _status = StatusType.Problem;
                         break;
                     }
                 }

@@ -7,6 +7,6 @@ namespace ServiceStatusWebApp.Core
     {
         public string Name { get; set; }
         
-        public bool Status { get; set; }
+        public StatusType Status { get; set; }
     }
 }

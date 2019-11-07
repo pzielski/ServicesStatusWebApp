@@ -7,8 +7,11 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using ServicesStatusWebApp.Hubs;
+using ServiceStatusWebApp.Data;
 
 namespace ServicesStatusWebApp
 {
@@ -24,6 +27,11 @@ namespace ServicesStatusWebApp
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContextPool<ServiceStatusWebAppDbContext>(options =>
+            {
+                options.UseSqlite(Configuration.GetConnectionString("ServiceStatusWebAppDb"));
+            });
+            services.AddScoped<IServiceData, SqlServiceData>();
             services.Configure<CookiePolicyOptions>(options =>
             {
                 // This lambda determines whether user consent for non-essential cookies is needed for a given request.
@@ -33,6 +41,7 @@ namespace ServicesStatusWebApp
 
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddSignalR();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -51,6 +60,10 @@ namespace ServicesStatusWebApp
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();
+            app.UseSignalR((routes) =>
+            {
+                routes.MapHub<ReloadServicesData>("/servicesHub");
+            });
 
             app.UseMvc();
         }
