@@ -12,6 +12,13 @@
     border-bottom: 5px solid black;
     text-align: left;
 }
+.service-row {
+    font-weight: 900;
+    font-size: 16px;
+    border-top: 3px solid black;
+    border-bottom: 5px solid black;
+    text-align: left;
+}
 .category-row.ok {
     background-color: darkgreen;
 }
@@ -37,6 +44,6 @@
 body {
     background-color: slategrey;
 }
-.service-row {
-    display: none
+.category-table{
+    width: 100%;
 }

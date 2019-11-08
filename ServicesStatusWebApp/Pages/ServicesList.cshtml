@@ -9,21 +9,22 @@
 <table class="table" id="servicesTable">
     @foreach(var category in Model.ServiceCategories)
         {
-            <tr>
-                <td>
-                    <table>
-                        <tr class="category-row">
-                            <th>@category.Name</th>
+        <tr>
+            <td>
+                <table class="category-table">
+                    <tr class="category-row ok" id="@category.Name">
+                        <th>@category.Name</th>
+                    </tr>
+                    @foreach (var service in category.Services)
+                    {
+                        <tr class="service-row ok" id="@service.ServiceDeskId">
+                            <td>@service.Name</td>
                         </tr>
-                        @foreach(var service in category.Services)
-                        {
-                            <tr class="service-row" id="@service.ServiceDeskId">
-                                <td>@service.Name</td>
-                            </tr>
-                        }
-                    </table>
-                </td>
-            </tr>
+                    }
+                </table>
+            </td>
+    </tr>
+            
         }
 
 

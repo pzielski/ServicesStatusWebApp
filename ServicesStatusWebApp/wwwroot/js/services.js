@@ -4,7 +4,6 @@ var connection = new signalR.HubConnectionBuilder().withUrl("/servicesHub").buil
 
 connection.on("ReloadServices", function (message) {
     var myTable = document.getElementById("servicesTable");
-    clearTable(myTable);
     populateTable(myTable, message);
 });
 connection.start();
@@ -13,54 +12,31 @@ function gator() {
         return console.error(err.toString());
     });
 }
-function clearTable(myNode) {
-    while (myNode.firstChild) {
-        myNode.removeChild(myNode.firstChild);
-    }
-}
 function populateTable(parent, categories) {
     var len = categories.length;
     for (var i = 0; i < len; i++) {
         console.log(categories[i]);
-        var categoryRow = document.createElement("tr");
-        var categoryName = document.createElement("td");
-        var categoryStatus = document.createElement("td");
-        var categoryStatusIcon = document.createElement("i");
-        categoryName.textContent = categories[i].name;
+        var categoryRow = document.getElementById(categories[i].name);
+        console.log("category")
+        console.log(categoryRow);
         if (categories[i].status == 0) {
-            categoryStatusIcon.className = "glyphicon glyphicon-ok";
             categoryRow.className = "category-row ok";
         }
         else {
-            categoryStatusIcon.className = "glyphicon glyphicon-remove";
             categoryRow.className = "category-row problem";
         }
-        categoryStatus.appendChild(categoryStatusIcon);
-        categoryRow.appendChild(categoryName);
-        categoryRow.appendChild(categoryStatus);
-        parent.appendChild(categoryRow);
         var services = categories[i].services;
         var servicesLen = services.length;
         for (var j = 0; j < servicesLen; j++) {
-            var serviceRow = document.createElement("tr");
-            var serviceName = document.createElement("td");
-            var serviceStatus = document.createElement("td");
-            var serviceStatusIcon = document.createElement("i");
-            
-            serviceName.textContent = " \t\t" + services[j].name;
-            console.log(serviceName.textContent);
+            var serviceRow = document.getElementById(services[j].serviceDeskId);
+            console.log("sevice");
+            console.log(serviceRow);
             if (services[j].status == 0) {
-                serviceStatusIcon.className = "glyphicon glyphicon-ok";
                 serviceRow.className = "service-row ok";
             }
             else {
-                serviceStatusIcon.className = "glyphicon glyphicon-remove";
                 serviceRow.className = "service-row problem";
             }
-            serviceStatus.appendChild(serviceStatusIcon);
-            serviceRow.appendChild(serviceName);
-            serviceRow.appendChild(serviceStatus);
-            parent.appendChild(serviceRow);
         }
     }
 }
@@ -74,5 +50,16 @@ function populateTable(parent, categories) {
 //        element.innerHTML = `Click count: ${event.detail}`;
 //    });
 //}
-//setTimeout(gator, 1500);
+var tables = document.getElementsByClassName("category-table");
+for (var i = 0; i < tables.length; i++) {
+    var element = tables[i].getElementsByTagName("th")[0];
+    element.addEventListener('click', event => {
+        var services = event.target.parentNode.parentNode.getElementsByTagName("td");
+        for (var j = 0; j < services.length; j++) {
+            services[j].classList.toggle("hidden");
+        }
+    }
+    );
+}
+setTimeout(gator, 1500);
 //setInterval(gator, 1500);
