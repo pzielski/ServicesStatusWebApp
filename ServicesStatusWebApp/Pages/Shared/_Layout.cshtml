@@ -15,9 +15,14 @@
               asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
         <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
     </environment>
-    <environment>
+    @*<environment include="Development">
+            <link rel="stylesheet" href="~/css/services-list.css" />
+        </environment>*@
+    <link rel="stylesheet" href="~/css/services-list.css" />
+    @*<environment>
         <link rel="stylesheet" href="~/css/services-list.css" />
-    </environment>
+    </environment>*@
+
 </head>
 <body>
     <nav class="navbar navbar-inverse navbar-fixed-top">

@@ -2,8 +2,7 @@
 
 var connection = new signalR.HubConnectionBuilder().withUrl("/servicesHub").build();
 
-connection.on("ReloadServices", function (message, statuses) {
-    console.log(statuses);
+connection.on("ReloadServices", function (message) {
     var myTable = document.getElementById("servicesTable");
     clearTable(myTable);
     populateTable(myTable, message);
@@ -48,7 +47,8 @@ function populateTable(parent, categories) {
             var serviceStatus = document.createElement("td");
             var serviceStatusIcon = document.createElement("i");
             
-            serviceName.textContent = services[j].name;
+            serviceName.textContent = " \t\t" + services[j].name;
+            console.log(serviceName.textContent);
             if (services[j].status == 0) {
                 serviceStatusIcon.className = "glyphicon glyphicon-ok";
                 serviceRow.className = "service-row ok";
@@ -64,5 +64,15 @@ function populateTable(parent, categories) {
         }
     }
 }
+//var elements = document.getElementsByClassName("category-row");
+//for (int i = 0; i < elements.length; i++)
+//{
+//    var element = elements[i];
+//    element.addEventListener('click', event => {
+//        // get td elements of element
+//        document.
+//        element.innerHTML = `Click count: ${event.detail}`;
+//    });
+//}
 //setTimeout(gator, 1500);
-setInterval(gator, 1500);
+//setInterval(gator, 1500);

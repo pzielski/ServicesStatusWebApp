@@ -22,14 +22,14 @@ namespace ServiceStatusWebApp.Data
             var problematicServices = GetProblematicServices();
             foreach (var service in servicesList)
             {
-                if(problematicServices.Contains(new Tuple<string, string>(service.CategoryName, service.Name)))
+                if(problematicServices.Contains(service.ServiceDeskId))
                 {
                     service.Status = StatusType.Problem;
                 }
             }
             var categories = from r in servicesList
-                             group new { r.Name, r.Status } by r.CategoryName into c
-                             select new ServiceCategory { Name = c.Key, Services = c.Select(x => new Service() { Name = x.Name, Status = x.Status }).ToList() };
+                             group new { r.Name, r.Status, r.ServiceDeskId } by r.CategoryName into c
+                             select new ServiceCategory { Name = c.Key, Services = c.Select(x => new Service() { Name = x.Name, Status = x.Status, ServiceDeskId = x.ServiceDeskId}).ToList() };
             return categories;
         }
         private IEnumerable<ServiceInfo> GetServicesList()
@@ -47,26 +47,25 @@ namespace ServiceStatusWebApp.Data
                     {
                         CategoryName = elements[0],
                         Name = elements[1],
-                        Status = StatusType.Alright
+                        Status = StatusType.Alright,
+                        ServiceDeskId = elements[2]
                     });
                 }
             }
             return Services;
         }
 
-        private List<Tuple<string, string>> GetProblematicServices()
+        private List<string> GetProblematicServices()
         {
-            var services = new List<Tuple<string, string>>();
+            var services = new List<string>();
             var fileName = config["problematicServicesFile"];
             FileStream fileStream = new FileStream(fileName, FileMode.Open);
             string line;
-            string[] elements;
             using (StreamReader reader = new StreamReader(fileStream))
             {
                 while ((line = reader.ReadLine()) != null)
                 {
-                    elements = line.Split(';');
-                    services.Add(new Tuple<string, string>(elements[0], elements[1]));
+                    services.Add(line);
                 }
             }
             return services;

@@ -17,5 +17,7 @@ namespace ServiceStatusWebApp.Core
 
         [Required]
         public StatusType Status { get; set; }
+
+        public string ServiceDeskId { get; set; }
     }
 }

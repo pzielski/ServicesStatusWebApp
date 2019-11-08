@@ -8,5 +8,7 @@ namespace ServiceStatusWebApp.Core
         public string Name { get; set; }
         
         public StatusType Status { get; set; }
+
+        public string ServiceDeskId { get; set; }
     }
 }

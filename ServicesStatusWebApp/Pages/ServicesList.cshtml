@@ -7,39 +7,24 @@
 <h2>ServicesList</h2>
 
 <table class="table" id="servicesTable">
-    @*@foreach(var category in Model.ServiceCategories)
+    @foreach(var category in Model.ServiceCategories)
         {
             <tr>
-                <td>@category.Name</td>
                 <td>
-                    @if (category.Status == true)
-                    {
-                        <i class="glyphicon glyphicon-ok"></i>
-                    }
-                    else
-                    {
-                    <i class="glyphicon glyphicon-remove"></i>
-                    }
+                    <table>
+                        <tr class="category-row">
+                            <th>@category.Name</th>
+                        </tr>
+                        @foreach(var service in category.Services)
+                        {
+                            <tr class="service-row" id="@service.ServiceDeskId">
+                                <td>@service.Name</td>
+                            </tr>
+                        }
+                    </table>
                 </td>
             </tr>
-            @foreach(var service in category.Services)
-            {
-                <tr>
-                    <td>@service.Name</td>
-                    <td>
-                        @if (service.Status == true)
-                        {
-                            <i class="glyphicon glyphicon-ok"></i>
-                        }
-                        else
-                        {
-                            <i class="glyphicon glyphicon-remove"></i>
-                        }
-                                </td>
-                </tr>
-            }
-
-        }*@
+        }
 
 
 </table>
