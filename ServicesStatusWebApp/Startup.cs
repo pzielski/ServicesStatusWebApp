@@ -31,14 +31,16 @@ namespace ServicesStatusWebApp
             {
                 options.UseSqlite(Configuration.GetConnectionString("ServiceStatusWebAppDb"));
             });
-            if (Configuration["UseSql"] == "true")
-            {
-                services.AddScoped<IServiceData, SqlServiceData>();
-            }
-            else
-            {
-                services.AddScoped<IServiceData, TxtServiceData>();
-            }
+            //if (Configuration["UseSql"] == "true")
+            //{
+            //    services.AddScoped<IServiceData, SqlServiceData>();
+            //}
+            //else
+            //{
+            //    services.AddScoped<IServiceData, TxtServiceData>();
+            //}
+
+            services.AddScoped<IServiceData, TxtServiceData>();
 
             services.Configure<CookiePolicyOptions>(options =>
             {

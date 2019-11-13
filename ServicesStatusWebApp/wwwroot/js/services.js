@@ -63,3 +63,31 @@ for (var i = 0; i < tables.length; i++) {
 }
 setTimeout(gator, 1500);
 //setInterval(gator, 1500);
+
+function hideAll() {
+    var categories = document.getElementsByClassName("category-table");
+    var categories_length = categories.length;
+    for (var i = 0; i < categories_length; i++) {
+
+
+        var service = categories[i].getElementsByTagName("td")
+        var service_length = service.length;
+        for (var j = 0; j < service_length; j++) {
+            service[j].classList.add("hidden");
+        }
+    }
+}
+
+function showAll() {
+    var categories = document.getElementsByClassName("category-table");
+    var categories_length = categories.length;
+    for (var i = 0; i < categories_length; i++) {
+
+
+        var service = categories[i].getElementsByTagName("td")
+        var service_length = service.length;
+        for (var j = 0; j < service_length; j++) {
+            service[j].classList.remove("hidden");
+        }
+    }
+}

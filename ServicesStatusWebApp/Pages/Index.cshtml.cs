@@ -9,9 +9,9 @@ namespace ServicesStatusWebApp.Pages
 {
     public class IndexModel : PageModel
     {
-        public void OnGet()
+        public ActionResult OnGet()
         {
-
+            return RedirectToPage("./ServicesList");
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿.table > tr > td {
+﻿.table > tbody > tr > td {
     padding: 8px;
     line-height: 1.42857143;
     vertical-align: top;
@@ -43,6 +43,7 @@
 }
 body {
     background-color: slategrey;
+    color: black;
 }
 .category-table{
     width: 100%;

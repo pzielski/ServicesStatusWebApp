@@ -5,6 +5,8 @@
 }
 
 <h2>ServicesList</h2>
+<button class="btn btn-primary" onclick="hideAll()">Zwiń wszystkie</button>
+<button class="btn btn-primary" onclick="showAll()">Rozwiń wszystkie</button>
 
 <table class="table" id="servicesTable">
     @foreach(var category in Model.ServiceCategories)
@@ -18,7 +20,7 @@
                     @foreach (var service in category.Services)
                     {
                         <tr class="service-row ok" id="@service.ServiceDeskId">
-                            <td>@service.Name</td>
+                            <td>                    @service.Name</td>
                         </tr>
                     }
                 </table>
