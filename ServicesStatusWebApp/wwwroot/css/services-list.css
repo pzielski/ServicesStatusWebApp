@@ -1,50 +1,82 @@
 ﻿.table > tbody > tr > td {
-    padding: 8px;
+    padding: 1px;
     line-height: 1.42857143;
     vertical-align: top;
-    border-top: 1px solid black;
-    color: black;
+    border-top: 0 solid black;
+}
+td {
+    padding: 5px;
+}
+th{
+    width: 100%;
+    padding: 5px;
+    padding-left: 8px;
 }
 .category-row {
-    font-weight: 900;
-    font-size: 16px;
-    border-top: 3px solid black;
-    border-bottom: 5px solid black;
+    border-radius: 0;
+    background-color: #e8e8e8;
+    border: 1px solid #e8e8e8;
+    font-weight: 700;
+    font-size: 1.1em;
+    padding: 15px;
     text-align: left;
+    cursor: pointer;
 }
 .service-row {
-    font-weight: 900;
-    font-size: 16px;
-    border-top: 3px solid black;
-    border-bottom: 5px solid black;
+    border-radius: 0;
+    background-color: white;
+    border: 1px solid #e8e8e8;
+    font-size: 1.1em;
+    padding: 15px;
     text-align: left;
+    font-weight: 400;
 }
-.category-row.ok {
+/*.category-row.ok {
     background-color: darkgreen;
 }
 .category-row.problem {
     background-color: orange;
+}*/
+.glyphicon{
+    float: right;
+    right: 15px;
+    top: 2px;
 }
 .glyphicon-ok {
-    color: lawngreen;
+    color: #7ED321;
 }
 .glyphicon-remove {
-    color: red;
+    color: orangered;
 }
-.service-row {
-    font-weight: bold;
-    white-space: pre;
+.service-status {
+    color: #7ED321;
+    font-size: 85%;
+    float: right;
+    right: 10px;
+    position: relative;
 }
-.service-row.ok {
-    background-color: green;
-}
-.service-row.problem {
-    background-color: orangered;
+.status-problem {
+    color: orangered;
 }
 body {
-    background-color: slategrey;
+    font-family: "Open Sans","Helvetica Neue",Helvetica,Arial,sans-serif;
+    background-color: #F0F3F4;
     color: black;
+    font-size: 1.1em;
 }
-.category-table{
-    width: 100%;
+.category-table {
+    margin: auto;
+    min-width: 500px;
+    width: 60%;
+    border: 1px solid transparent;
+    margin-bottom: 10px;
+    background-color: white;
+    box-shadow: 0 1px 1px rgba(0,0,0,.05);
+}
+.container {
+    text-align: center;
+}
+#servicesTable {
+    position: relative;
+    top: 10px;
 }

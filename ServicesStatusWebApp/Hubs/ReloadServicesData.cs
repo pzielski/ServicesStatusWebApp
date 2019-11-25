@@ -22,7 +22,16 @@ namespace ServicesStatusWebApp.Hubs
         public async Task ReloadServices()
         {
             var Services = serviceData.GetAndParseServices();
-            await Clients.All.SendAsync("ReloadServices", Services);
+            var status = true;
+            foreach (var service in Services)
+            {
+                if (service.Status == StatusType.Problem)
+                {
+                    status = false;
+                    break;
+                }
+            }
+            await Clients.All.SendAsync("ReloadServices", Services, status);
         }
     }
 }

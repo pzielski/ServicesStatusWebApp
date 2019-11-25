@@ -4,7 +4,6 @@
     ViewData["Title"] = "ServicesList";
 }
 
-<h2>ServicesList</h2>
 <button class="btn btn-primary" onclick="hideAll()">Zwiń wszystkie</button>
 <button class="btn btn-primary" onclick="showAll()">Rozwiń wszystkie</button>
 
@@ -14,20 +13,24 @@
         <tr>
             <td>
                 <table class="category-table">
-                    <tr class="category-row ok" id="@category.Name">
-                        <th>@category.Name</th>
+                    <tr class="category-row">
+                        <th>
+                            @category.Name
+                            <span class="glyphicon glyphicon-ok" id="@category.Name"></span>
+                        </th>
+
                     </tr>
                     @foreach (var service in category.Services)
                     {
-                        <tr class="service-row ok" id="@service.ServiceDeskId">
-                            <td>                    @service.Name</td>
+                    <tr class="service-row">
+                        <td>                    @service.Name<span class="service-status" id="@service.ServiceDeskId">Operational</span></td>
+                            
                         </tr>
                     }
                 </table>
             </td>
-    </tr>
-            
-        }
+        </tr>
+     }
 
 
 </table>

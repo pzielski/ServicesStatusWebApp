@@ -36,7 +36,7 @@ namespace ServiceStatusWebApp.Data
         {
             var Services = new List<ServiceInfo>();
             var fileName = config["serviceListFile"];
-            FileStream fileStream = new FileStream(fileName, FileMode.Open);
+            FileStream fileStream = new FileStream(fileName, FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
             string line;
             string[] elements;
             using (StreamReader reader = new StreamReader(fileStream))
@@ -59,7 +59,7 @@ namespace ServiceStatusWebApp.Data
         {
             var services = new List<string>();
             var fileName = config["problematicServicesFile"];
-            FileStream fileStream = new FileStream(fileName, FileMode.Open);
+            FileStream fileStream = new FileStream(fileName, FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
             string line;
             using (StreamReader reader = new StreamReader(fileStream))
             {
